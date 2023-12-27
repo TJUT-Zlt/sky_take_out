@@ -58,7 +58,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      */
     @Bean
     public Docket docket1(){
-        log.info("准备生成接口文档...");
+        log.info("准备生成管理端接口文档...");
         ApiInfo apiInfo = new ApiInfoBuilder()
                 .title("苍穹外卖项目接口文档")
                 .version("2.0")
@@ -79,7 +79,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
     @Bean
     public Docket docket2(){
-        log.info("准备生成接口文档...");
+        log.info("准备生成用户端接口文档...");
         ApiInfo apiInfo = new ApiInfoBuilder()
                 .title("苍穹外卖项目接口文档")
                 .version("2.0")
@@ -104,6 +104,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      * @param registry
      */
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        log.info("开始设置静态资源映射...");
         registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
@@ -113,6 +114,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      * @param converters
      */
     protected void extendMessageConverters(List<HttpMessageConverter<?>> converters){
+        log.info("扩展消息转换器...");
         //创建一个消息转换器对象
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
         //需要为消息转化器设置一个对象转换器,对象转换器可以将java对象序列化为json对象
