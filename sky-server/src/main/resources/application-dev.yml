@@ -11,3 +11,8 @@ sky:
     access-key-id: LTAI5tGCDgVmnwj9rM4paTS6
     access-key-secret: hVYKCFiJe0BR70s04D2unmVUQYaMtR
     bucket-name: abel-oss-study
+  redis:
+    host: 192.168.154.128
+    port: 6379
+    password: 123456
+    database: 10
