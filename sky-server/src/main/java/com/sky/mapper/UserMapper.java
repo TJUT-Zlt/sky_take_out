@@ -4,17 +4,11 @@ import com.sky.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-/**
- * ClassName:UserMapper
- * Package:com.sky.mapper
- * Description:
- *
- * @Author abel
- * @Create 2023-12-27 17:05
- * @Version 1.0
- */
+import java.util.Map;
+
 @Mapper
 public interface UserMapper {
+
     /**
      * 根据openid查询用户
      * @param openid
@@ -29,4 +23,13 @@ public interface UserMapper {
      */
     void insert(User user);
 
+    @Select("select * from user where id = #{id}")
+    User getById(Long userId);
+
+    /**
+     * 根据动态条件统计用户数量
+     * @param map
+     * @return
+     */
+    Integer countByMap(Map map);
 }
