@@ -53,6 +53,8 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     }
 
     /**
+     * 使用Swagger
+     * 在配置类中加入 knife4j 相关配置
      * 通过knife4j生成接口文档
      * @return
      */

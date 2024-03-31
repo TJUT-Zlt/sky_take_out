@@ -21,6 +21,9 @@ import java.time.LocalDateTime;
  * Package:com.sky.aspect
  * Description:自定义切面类 统一拦截加入了AutoFill
  *
+ *
+ * 公共字段自动填充
+ *
  * @Author abel
  * @Create 2023-12-25 10:53
  * @Version 1.0

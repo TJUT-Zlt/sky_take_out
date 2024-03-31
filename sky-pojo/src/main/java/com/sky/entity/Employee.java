@@ -1,6 +1,6 @@
 package com.sky.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+//@Builder与@Data共用时，注意加 @NoArgsConstructor 和 @AllArgsConstructor 注解
 @Data
-@Builder
+@Builder //构造者模式
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee implements Serializable {
