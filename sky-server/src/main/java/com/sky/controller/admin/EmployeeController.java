@@ -71,7 +71,7 @@ public class EmployeeController {
      */
     @PostMapping("/logout")
     @ApiOperation(value="员工退出")
-    public Result<String> logout() {
+    public Result logout() {
         return Result.success();
     }
 
@@ -82,7 +82,7 @@ public class EmployeeController {
      */
     @PostMapping
     @ApiOperation(value="新增员工")
-    public Result<String> save(@RequestBody EmployeeDTO employeeDTO){
+    public Result save(@RequestBody EmployeeDTO employeeDTO){
         employeeService.save(employeeDTO);
         return Result.success();
     }
@@ -107,7 +107,7 @@ public class EmployeeController {
      */
     @PostMapping("/status/{status}")
     @ApiOperation(value="启用/禁用员工账号")
-    public Result<String> startOrStop(@PathVariable Integer status,Long id){
+    public Result startOrStop(@PathVariable Integer status,Long id){
         employeeService.startOrStop(status,id);
         return Result.success();
     }
@@ -131,7 +131,7 @@ public class EmployeeController {
      */
     @PutMapping
     @ApiOperation(value="修改员工")
-    public Result<String> update(@RequestBody EmployeeDTO employeeDTO){
+    public Result update(@RequestBody EmployeeDTO employeeDTO){
         employeeService.update(employeeDTO);
         return Result.success();
     }

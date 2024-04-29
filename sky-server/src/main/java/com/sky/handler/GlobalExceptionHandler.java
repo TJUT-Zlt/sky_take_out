@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * 处理SQL异常 (员工管理用户名已存在)
+     * 处理SQL异常 (例如:员工管理用户名已存在)
      * @param ex
      * @return
      */

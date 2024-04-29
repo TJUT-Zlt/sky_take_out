@@ -5,7 +5,6 @@ import com.github.pagehelper.PageHelper;
 import com.sky.constant.MessageConstant;
 import com.sky.constant.PasswordConstant;
 import com.sky.constant.StatusConstant;
-import com.sky.context.BaseContext;
 import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
 import com.sky.dto.EmployeePageQueryDTO;
@@ -18,11 +17,9 @@ import com.sky.result.PageResult;
 import com.sky.service.EmployeeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -51,7 +48,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         //密码比对
         //密码要进行md5加密，然后再进行比对
+        //把用户输入的密码进行md5加密
         password = DigestUtils.md5DigestAsHex(password.getBytes());
+
+        System.out.println(password);
 
         if (!password.equals(employee.getPassword())) {
             //密码错误
@@ -75,16 +75,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void save(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
 
+        //属性拷贝
         BeanUtils.copyProperties(employeeDTO,employee);
 
         employee.setStatus(StatusConstant.ENABLE);
         employee.setPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));
 
-        //employee.setCreateTime(LocalDateTime.now());
-        //employee.setUpdateTime(LocalDateTime.now());
-
-        //employee.setCreateUser(BaseContext.getCurrentId());
-        //employee.setUpdateUser(BaseContext.getCurrentId());
+        //封装--->创建人、创建时间、修改人、修改时间
+//        employee.setCreateTime(LocalDateTime.now());
+//        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setCreateUser(BaseContext.getCurrentId());
+//        employee.setUpdateUser(BaseContext.getCurrentId());
 
         employeeMapper.insert(employee);
 
@@ -97,10 +98,11 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO) {
-        //使用mybatis插件
+        ////基于PageHelper插件实现动态分页查询
          PageHelper.startPage(employeePageQueryDTO.getPage(), employeePageQueryDTO.getPageSize());
-
          Page<Employee> page = employeeMapper.pageQuery(employeePageQueryDTO);
+
+
         long total = page.getTotal();
         List<Employee> record = page.getResult();
 

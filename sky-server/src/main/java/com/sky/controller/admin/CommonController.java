@@ -50,6 +50,7 @@ public class CommonController {
             ////构造新文件名称
             String objectName = UUID.randomUUID().toString() + extension;
             //文件的请求路径
+            //将文件上传的阿里云
             String filePath = aliOssUtil.upload(file.getBytes(), objectName);
             return Result.success(filePath);
 

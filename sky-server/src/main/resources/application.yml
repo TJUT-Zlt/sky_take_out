@@ -15,7 +15,7 @@ spring:
   redis:
     host: ${sky.redis.host}
     port: ${sky.redis.port}
-    password: ${sky.redis.password}
+#    password: ${sky.redis.password}
     database: ${sky.redis.database}
 
 mybatis:
@@ -42,8 +42,12 @@ sky:
     admin-ttl: 7200000
     # 设置前端传递过来的令牌名称
     admin-token-name: token
+
+    # 设置jwt签名加密时使用的密钥
     user-secret-key: itheima
+    # 设置jwt过期令牌
     user-ttl: 7200000
+    # 设置前端传递过来的令牌名称
     user-token-name: authentication
   alioss:
     endpoint: ${sky.alioss.endpoint}

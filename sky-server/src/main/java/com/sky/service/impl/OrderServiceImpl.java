@@ -78,7 +78,7 @@ public class OrderServiceImpl implements OrderService {
         }
 
         //检查用户的收货地址是否超出配送范围
-        //checkOutOfRange(addressBook.getCityName() + addressBook.getDistrictName() + addressBook.getDetail());
+//        checkOutOfRange(addressBook.getCityName() + addressBook.getDistrictName() + addressBook.getDetail());
 
         //查询当前用户的购物车数据
         Long userId = BaseContext.getCurrentId();
@@ -149,7 +149,7 @@ public class OrderServiceImpl implements OrderService {
 //                "苍穹外卖订单", //商品描述
 //                user.getOpenid() //微信用户的openid
 //        );
-        JSONObject jsonObject =new JSONObject();
+        JSONObject jsonObject = new JSONObject();
 
         if (jsonObject.getString("code") != null && jsonObject.getString("code").equals("ORDERPAID")) {
             throw new OrderBusinessException("该订单已支付");
@@ -158,6 +158,8 @@ public class OrderServiceImpl implements OrderService {
         OrderPaymentVO vo = jsonObject.toJavaObject(OrderPaymentVO.class);
         vo.setPackageStr(jsonObject.getString("package"));
 
+
+        //跳过微信支付功能
         paySuccess(ordersPaymentDTO.getOrderNumber());
 
         return vo;
@@ -184,6 +186,7 @@ public class OrderServiceImpl implements OrderService {
                 .build();
 
         orderMapper.update(orders);
+
 
         //通过websocket向客户端浏览器推送消息 type orderId content
         Map map = new HashMap();

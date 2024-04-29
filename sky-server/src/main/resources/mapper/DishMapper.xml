@@ -3,13 +3,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sky.mapper.DishMapper">
 
+    <!--需要回显ID  useGeneratedKeys:true 表示获取主键值,keyProperty="id" 表示将主键值赋给id属性 -->
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into dish (name, category_id, price, image, description, create_time, update_time, create_user,update_user, status)
         values (#{name}, #{categoryId}, #{price}, #{image}, #{description}, #{createTime}, #{updateTime}, #{createUser},#{updateUser}, #{status})
     </insert>
 
     <select id="pageQuery" resultType="com.sky.vo.DishVO">
-        select d.* , c.name as categoryName from dish d left outer join category c on d.category_id = c.id
+        select d.* , c.name as categoryName from dish d
+        left outer join category c on d.category_id = c.id
         <where>
             <if test="name != null">
                 and d.name like concat('%',#{name},'%')

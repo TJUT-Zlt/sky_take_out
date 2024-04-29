@@ -1,11 +1,11 @@
 package com.sky.service.impl;
 
+import com.sky.service.WorkspaceService;
 import com.sky.dto.GoodsSalesDTO;
 import com.sky.entity.Orders;
 import com.sky.mapper.OrderMapper;
 import com.sky.mapper.UserMapper;
 import com.sky.service.ReportService;
-import com.sky.service.WorkspaceService;
 import com.sky.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -228,6 +228,7 @@ public class ReportServiceImpl implements ReportService {
         LocalDateTime endTime = LocalDateTime.of(end, LocalTime.MAX);
 
         List<GoodsSalesDTO> salesTop10 = orderMapper.getSalesTop10(beginTime, endTime);
+
         List<String> names = salesTop10.stream().map(GoodsSalesDTO::getName).collect(Collectors.toList());
         String nameList = StringUtils.join(names, ",");
 

@@ -33,6 +33,7 @@
     </properties>
     <dependencyManagement>
         <dependencies>
+
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -69,6 +70,7 @@
                 <version>${pagehelper}</version>
             </dependency>
 
+            <!--Knife4j 是为Java MVC框架集成Swagger生成Api文档的增强解决方案。-->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-spring-boot-starter</artifactId>
@@ -116,12 +118,14 @@
                 <artifactId>poi-ooxml</artifactId>
                 <version>${poi}</version>
             </dependency>
+
             <!--微信支付-->
             <dependency>
                 <groupId>com.github.wechatpay-apiv3</groupId>
                 <artifactId>wechatpay-apache-httpclient</artifactId>
                 <version>0.4.8</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 </project>
